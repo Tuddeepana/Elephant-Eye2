@@ -26,7 +26,7 @@ const Navbar = () => {
     }, []);
 
     const getLinkClass = (path) => {
-        return window.location.pathname === path ? "text-yellow-500" : "hover:text-yellow-500";
+        return window.location.pathname === path ? "text-yellow-500" : "hover:text-[#0e6a11]";
     };
 
     const handleModalOpen = () => {
@@ -67,7 +67,7 @@ const Navbar = () => {
                         <Link to="/aboutus" className={getLinkClass("/aboutus")}>About us</Link>
                         <button
                             onClick={handleModalOpen}
-                            className="px-4 py-2 bg-yellow-700 text-white font-semibold rounded hover:bg-yellow-800"
+                            className="px-4 py-2 bg-[#0e6a11] text-white font-semibold rounded hover:bg-[#0c5a0e]"
                         >
                             Book Now
                         </button>
@@ -85,10 +85,10 @@ const Navbar = () => {
 
                 {isOpen && (
                     <div className="lg:hidden mt-4 text-center py-4 rounded-lg space-y-4">
-                        <Link to="/" className="block hover:text-gray-200">Home</Link>
-                        <Link to="/rooms" className="block hover:text-gray-200">Rooms</Link>
-                        <Link to="/gallery" className="block hover:text-gray-200">Gallery</Link>
-                        <Link to="/aboutus" className="block hover:text-gray-200">About us</Link>
+                        <Link to="/" className="block hover:text-[#0e6a11]">Home</Link>
+                        <Link to="/rooms" className="block hover:text-[#0e6a11]">Rooms</Link>
+                        <Link to="/gallery" className="block hover:text-[#0e6a11]">Gallery</Link>
+                        <Link to="/aboutus" className="block hover:text-[#0e6a11]">About us</Link>
                     </div>
                 )}
             </nav>
