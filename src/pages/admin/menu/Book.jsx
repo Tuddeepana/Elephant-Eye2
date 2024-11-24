@@ -1,188 +1,204 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { TableVirtuoso } from 'react-virtuoso';
-import Button from '@mui/material/Button';
-import EditIcon from '@mui/icons-material/Edit';
-import AddIcon from '@mui/icons-material/Add';
-import TextField from '@mui/material/TextField';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import React, { useState, useEffect } from 'react';
+// import supabase from '../../../service/supabaseClient.js';
 
-const createData = (guest, mobileNumber, confirmation, checkInDate, checkOutDate, room, bookedOn, bookingAmount) => ({
-    guest,
-    mobileNumber,
-    confirmation,
-    checkInDate,
-    checkOutDate,
-    room,
-    bookedOn,
-    bookingAmount,
-    action: <Button variant="contained"><EditIcon /></Button>
-});
+const BookingTable = () => {
+    const [rows, setRows] = useState([]);
+    const [formData, setFormData] = useState({
+        guestName: '',
+        mobileNumber: '',
+        confirmation: '',
+        checkInDate: '',
+        checkOutDate: '',
+        roomNumber: '',
+        bookedOn: '',
+        bookingPrize: '',
+    });
 
-const columns = [
-    { width: 150, label: 'Guest', dataKey: 'guest' },
-    { width: 150, label: 'Mobile Number', dataKey: 'mobileNumber' },
-    { width: 150, label: 'Confirmation', dataKey: 'confirmation' },
-    { width: 150, label: 'Check-in Date', dataKey: 'checkInDate' },
-    { width: 150, label: 'Check-out Date', dataKey: 'checkOutDate' },
-    { width: 100, label: 'Room', dataKey: 'room' },
-    { width: 150, label: 'Booked On', dataKey: 'bookedOn' },
-    { width: 150, label: 'Booking Amount', dataKey: 'bookingAmount' },
-    { width: 100, label: 'Action', dataKey: 'action' },
-];
+    // Load data from Supabase when the component mounts
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-const initialRows = [
-    createData('John Doe', '1234567890', 'Confirmed', '2023-10-01', '2023-10-05', '101', '2023-09-25', '$500'),
-    createData('Jane Smith', '0987654321', 'Pending', '2023-10-02', '2023-10-06', '102', '2023-09-26', '$400'),
-    // Add more rows as needed
-];
-
-const VirtuosoTableComponents = {
-    Scroller: React.forwardRef((props, ref) => (
-        <TableContainer component={Paper} {...props} ref={ref} />
-    )),
-    Table: (props) => (
-        <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
-    ),
-    TableHead: React.forwardRef((props, ref) => <TableHead {...props} ref={ref} />),
-    TableRow,
-    TableBody: React.forwardRef((props, ref) => <TableBody {...props} ref={ref} />),
-};
-
-VirtuosoTableComponents.Scroller.displayName = 'Scroller';
-VirtuosoTableComponents.Table.displayName = 'Table';
-VirtuosoTableComponents.TableHead.displayName = 'TableHead';
-VirtuosoTableComponents.TableBody.displayName = 'TableBody';
-
-export default function ReactVirtualizedTable() {
-    const [rows, setRows] = React.useState(initialRows);
-    const [totalBookingAmount, setTotalBookingAmount] = React.useState(0);
-
-    React.useEffect(() => {
-        const total = rows.reduce((sum, row) => sum + parseFloat(row.bookingAmount.replace('$', '')), 0);
-        setTotalBookingAmount(total);
-    }, [rows]);
-
-    const handleRowChange = (index, key, value) => {
-        const newRows = [...rows];
-        newRows[index][key] = value;
-        setRows(newRows);
-    };
-
-    const handleAddRow = () => {
-        setRows([...rows, createData('', '', '', '', '', '', '', '')]);
-    };
-
-    const handleClearRows = () => {
-        if (window.confirm('Are you sure you want to clear the table?')) {
-            setRows([]);
+    const fetchData = async () => {
+        const { data, error } = await supabase.from('bookings').select('*');
+        if (error) {
+            console.error('Error fetching data: ', error);
+        } else {
+            setRows(data);
         }
     };
 
-    const fixedHeaderContent = () => (
-        <TableRow>
-            {columns.map((column) => (
-                <TableCell
-                    key={column.dataKey}
-                    variant="head"
-                    align="left"
-                    style={{ width: column.width, fontWeight: 'bold' }}
-                    sx={{ backgroundColor: 'background.paper' }}
-                >
-                    {column.label}
-                </TableCell>
-            ))}
-        </TableRow>
-    );
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
 
-    const rowContent = (_index, row) => (
-        <React.Fragment>
-            {columns.map((column) => (
-                <TableCell
-                    key={column.dataKey}
-                    align="left"
-                >
-                    {column.dataKey === 'confirmation' ? (
-                        <Select
-                            value={row[column.dataKey]}
-                            onChange={(e) => handleRowChange(_index, column.dataKey, e.target.value)}
-                        >
-                            <MenuItem value="Confirmed">Confirmed</MenuItem>
-                            <MenuItem value="Pending">Pending</MenuItem>
-                        </Select>
-                    ) : ['guest', 'mobileNumber', 'room', 'bookingAmount'].includes(column.dataKey) ? (
-                        <TextField
-                            value={row[column.dataKey]}
-                            onChange={(e) => handleRowChange(_index, column.dataKey, e.target.value)}
-                        />
-                    ) : ['checkInDate', 'checkOutDate', 'bookedOn'].includes(column.dataKey) ? (
-                        <input
-                            type="date"
-                            value={row[column.dataKey]}
-                            onChange={(e) => handleRowChange(_index, column.dataKey, e.target.value)}
-                        />
-                    ) : (
-                        row[column.dataKey]
-                    )}
-                </TableCell>
-            ))}
-        </React.Fragment>
-    );
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Insert new row into Supabase
+        const { error } = await supabase
+            .from('bookings')
+            .insert([
+                {
+                    guest_name: formData.guestName,
+                    mobile_number: formData.mobileNumber,
+                    confirmation: formData.confirmation,
+                    check_in_date: formData.checkInDate,
+                    check_out_date: formData.checkOutDate,
+                    room_number: formData.roomNumber,
+                    booked_on: formData.bookedOn,
+                    booking_prize: parseFloat(formData.bookingPrize), // Ensure booking prize is numeric
+                },
+            ]);
+
+        if (error) {
+            console.error('Error inserting data: ', error);
+        } else {
+            // Fetch data again to update the table
+            fetchData();
+            setFormData({
+                guestName: '',
+                mobileNumber: '',
+                confirmation: '',
+                checkInDate: '',
+                checkOutDate: '',
+                roomNumber: '',
+                bookedOn: '',
+                bookingPrize: '',
+            });
+        }
+    };
+
+    const handleDeleteRow = async (id) => {
+        // Delete row from Supabase
+        const { error } = await supabase.from('bookings').delete().eq('id', id);
+        if (error) {
+            console.error('Error deleting data: ', error);
+        } else {
+            fetchData(); // Fetch data again to update the table
+        }
+    };
 
     return (
-        <Paper style={{ height: 400, width: '100%' }}>
-            <TableVirtuoso
-                data={rows}
-                components={VirtuosoTableComponents}
-                fixedHeaderContent={fixedHeaderContent}
-                itemContent={(index, row) => rowContent(index, row)}
-            />
-            <TableRow>
-                <TableCell colSpan={columns.length} align="center">
-                    <Button
-                        variant="contained"
-                        onClick={handleAddRow}
-                        startIcon={<AddIcon />}
-                    >
-                        Add Row
-                    </Button>
-                </TableCell>
+        <div className="container mx-auto p-4">
+            <h1 className="text-2xl font-bold mb-4">Booking Table</h1>
 
-                <TableCell colSpan={columns.length} align="right">
-                    <Button
-                        variant="contained"
-                        onClick={() => {
-                            // Add your save functionality here
-                            console.log('Save button clicked!');
-                        }}
-                        style={{ backgroundColor: 'green', color: 'white' }}
+            {/* Form to add a new booking */}
+            <form onSubmit={handleSubmit} className="mb-4">
+                <div className="grid grid-cols-4 gap-2 mb-2">
+                    <input
+                        type="text"
+                        name="guestName"
+                        value={formData.guestName}
+                        onChange={handleInputChange}
+                        placeholder="Guest Name"
+                        className="p-2 border border-gray-300 rounded"
+                    />
+                    <input
+                        type="tel"
+                        name="mobileNumber"
+                        value={formData.mobileNumber}
+                        onChange={handleInputChange}
+                        placeholder="Mobile Number"
+                        className="p-2 border border-gray-300 rounded"
+                        pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                        maxLength="10"
+                    />
+                    <select
+                        name="confirmation"
+                        value={formData.confirmation}
+                        onChange={handleInputChange}
+                        className="p-2 border border-gray-300 rounded"
                     >
-                        Save
-                    </Button>
-                </TableCell>
+                        <option value="">Confirmation Status</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <input
+                        type="date"
+                        name="checkInDate"
+                        value={formData.checkInDate}
+                        onChange={handleInputChange}
+                        className="p-2 border border-gray-300 rounded"
+                    />
+                </div>
+                <div className="grid grid-cols-4 gap-2 mb-2">
+                    <input
+                        type="date"
+                        name="checkOutDate"
+                        value={formData.checkOutDate}
+                        onChange={handleInputChange}
+                        className="p-2 border border-gray-300 rounded"
+                    />
+                    <input
+                        type="text"
+                        name="roomNumber"
+                        value={formData.roomNumber}
+                        onChange={handleInputChange}
+                        placeholder="Room Number"
+                        className="p-2 border border-gray-300 rounded"
+                    />
+                    <input
+                        type="date"
+                        name="bookedOn"
+                        value={formData.bookedOn}
+                        onChange={handleInputChange}
+                        className="p-2 border border-gray-300 rounded"
+                    />
+                    <input
+                        type="number"
+                        name="bookingPrize"
+                        value={formData.bookingPrize}
+                        onChange={handleInputChange}
+                        placeholder="Booking Prize"
+                        className="p-2 border border-gray-300 rounded"
+                        step="0.01"
+                    />
+                </div>
+                <button type="submit" className="p-2 bg-blue-500 text-white rounded mt-4">Add Booking</button>
+            </form>
 
-                <TableCell colSpan={columns.length} align="right">
-                    <Button
-                        variant="contained"
-                        onClick={handleClearRows}
-                        style={{ backgroundColor: 'red', color: 'white' }}
-                    >
-                        Clear
-                    </Button>
-                </TableCell>
-            </TableRow>
-            <TableRow>
-                <TableCell colSpan={columns.length} align="right" style={{ fontWeight: 'bold' }}>
-                    Total Booking Amount: ${totalBookingAmount}
-                </TableCell>
-            </TableRow>
-        </Paper>
+            {/* Displaying the table */}
+            <table className="table-auto w-full border-collapse border border-gray-300">
+                <thead>
+                <tr className="bg-gray-200">
+                    <th className="border border-gray-300 p-2">Guest Name</th>
+                    <th className="border border-gray-300 p-2">Mobile Number</th>
+                    <th className="border border-gray-300 p-2">Confirmation</th>
+                    <th className="border border-gray-300 p-2">Check-in Date</th>
+                    <th className="border border-gray-300 p-2">Check-out Date</th>
+                    <th className="border border-gray-300 p-2">Room Number</th>
+                    <th className="border border-gray-300 p-2">Booked On</th>
+                    <th className="border border-gray-300 p-2">Booking Prize</th>
+                    <th className="border border-gray-300 p-2">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {rows.map((row) => (
+                    <tr key={row.id}>
+                        <td className="border border-gray-300 p-2">{row.guest_name}</td>
+                        <td className="border border-gray-300 p-2">{row.mobile_number}</td>
+                        <td className="border border-gray-300 p-2">{row.confirmation}</td>
+                        <td className="border border-gray-300 p-2">{row.check_in_date}</td>
+                        <td className="border border-gray-300 p-2">{row.check_out_date}</td>
+                        <td className="border border-gray-300 p-2">{row.room_number}</td>
+                        <td className="border border-gray-300 p-2">{row.booked_on}</td>
+                        <td className="border border-gray-300 p-2">{row.booking_prize}</td>
+                        <td className="border border-gray-300 p-2">
+                            <button onClick={() => handleDeleteRow(row.id)}
+                                    className="bg-red-500 text-white p-1 rounded">Delete
+                            </button>
+                        </td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+        </div>
     );
-}
+};
+
+export default BookingTable;
