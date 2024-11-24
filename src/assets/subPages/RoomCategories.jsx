@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Deluxe_Twin from "../img/gallery/rooms/Twin.jpg";
 import Triple_room from "../img/gallery/rooms/Triple.jpg";
 import Deluxe_family from "../img/gallery/rooms/family.jpg";
+import Double_room from "../img/gallery/rooms/family.jpg"; // New added image
 
 const ImageSwitcher = () => {
     const images = {
+        "Deluxe Double room": Double_room, // New added room
         "Deluxe Twin room": Deluxe_Twin,
-        "Triple room": Triple_room,
+        "Deluxe Triple room": Triple_room,
         "Deluxe family room": Deluxe_family,
     };
 
-    const [selectedImage, setSelectedImage] = useState(images["Deluxe Twin room"]);
-    const [activeRoom, setActiveRoom] = useState("Deluxe Twin room");
+    const [selectedImage, setSelectedImage] = useState(images["Deluxe Double room"]); // Default to the new room
+    const [activeRoom, setActiveRoom] = useState("Deluxe Double room");
     const [fade, setFade] = useState(false);
 
     const handleNavClick = (imageKey) => {

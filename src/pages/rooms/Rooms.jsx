@@ -93,7 +93,8 @@ const Rooms = () => {
                                 </div>
                                 {/* Book Now Text */}
                                 <div
-                                    className="text-blue-500 font-bold text-lg cursor-pointer hover:underline"
+                                    className="font-bold text-lg cursor-pointer hover:underline"
+                                    style={{ color: '#0e6a11' }}
                                     onClick={handleBookNow}
                                 >
                                     Book Now
