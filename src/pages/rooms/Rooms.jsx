@@ -3,9 +3,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import Img1 from "../../assets/img/gallery/rooms/family.jpg";
-
 import Img2 from "../../assets/img/gallery/rooms/triple1.jpg";
-
+import Img3 from "../../assets/img/gallery/rooms/Twin.jpg"; // New image import
 import Img4 from "../../assets/img/gallery/rooms/Twin.jpg";
 
 import LandingPage from "../../assets/subPages/LandingPage.jsx";
@@ -22,12 +21,20 @@ const Rooms = () => {
 
     const rooms = [
         {
-            images: [Img1], // Only one image per room
-            title: "Deluxe Family Room",
-            size: "46 SQM",
-            occupancy: "04 (With an extra bed)",
-            description: "A luxurious room with a beautiful view and modern amenities.",
-            price: "$50 per night"
+            images: [Img3], // New room
+            title: "Deluxe Double Room",
+            size: "30 SQM",
+            occupancy: "02",
+            description: "A cozy room perfect for couples with modern amenities.",
+            price: "$35 per night"
+        },
+        {
+            images: [Img4],
+            title: "Deluxe Twin Room",
+            size: "32 SQM",
+            occupancy: "02",
+            description: "A comfortable room with all the essential facilities.",
+            price: "$27 per night"
         },
         {
             images: [Img2],
@@ -38,12 +45,12 @@ const Rooms = () => {
             price: "$38 per night"
         },
         {
-            images: [Img4],
-            title: "Deluxe Twin Room",
-            size: "32 SQM",
-            occupancy: "02",
-            description: "A comfortable room with all the essential facilities.",
-            price: "$27 per night"
+            images: [Img1],
+            title: "Deluxe Family Room",
+            size: "46 SQM",
+            occupancy: "04 (With an extra bed)",
+            description: "A luxurious room with a beautiful view and modern amenities.",
+            price: "$50 per night"
         }
     ];
 
@@ -61,14 +68,15 @@ const Rooms = () => {
 
             {/* Room Cards Section */}
             <div className="mt-24 px-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-screen-xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-screen-xl mx-auto">
                     {rooms.map((room, index) => (
                         <div
                             key={index}
-                            className="relative bg-white shadow-lg rounded-2xl overflow-hidden group transition-transform transform hover:scale-105 duration-300"
+                            className="relative bg-white shadow-lg rounded-xl overflow-hidden group transition-transform transform hover:scale-105 duration-300"
+                            style={{ width: '90%', margin: 'auto' }}
                         >
                             {/* Image Wrapper */}
-                            <div className="relative h-64 overflow-hidden">
+                            <div className="relative h-48 overflow-hidden">
                                 {/* Single Image */}
                                 <img
                                     src={room.images[0]}
@@ -77,8 +85,8 @@ const Rooms = () => {
                                 />
                             </div>
                             {/* Content */}
-                            <div className="p-6">
-                                <h3 className="text-2xl font-bold mb-2 text-gray-800">{room.title}</h3>
+                            <div className="p-4">
+                                <h3 className="text-xl font-bold mb-2 text-gray-800">{room.title}</h3>
                                 <p className="text-gray-600 text-sm mb-4">{room.description}</p>
                                 <div className="flex items-center text-gray-600 text-sm mb-2">
                                     <FaRulerCombined className="mr-2" />

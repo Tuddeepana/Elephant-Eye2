@@ -15,6 +15,7 @@ import Chinees from "../../assets/img/cardImages/chinese.jpg"
 import Srilanka from '../../assets/img/cardImages/srilanka.jpg'
 import Western from '../../assets/img/cardImages/western.jpg'
 import Kirind from '../../assets/img/cardImages/kirirnda.jpg'
+import Nine from '../../assets/img/cardImages/nine.jpg'
 
 import Kataragama from '../../assets/img/cardImages/kataragama.jpg'
 import Thissamaharama from '../../assets/img/cardImages/thissamahara.jpg'
@@ -100,7 +101,7 @@ const Home = () => {
         },
         {
             imageUrl: Kirind,
-            title: "Kirinda Beach",
+            title: "Temple Kirinda Beach",
             location: "2 hours from Kandy",
             description: "A serene mountain retreat"
         },
@@ -129,8 +130,8 @@ const Home = () => {
             description: "Relax on a secluded island"
         },
         {
-            imageUrl: Ridi,
-            title: "Bunadala Paradise",
+            imageUrl: Nine,
+            title: "Ella",
             location: "6 hours from Trincomalee",
             description: "Enjoy the serene environment"
         },
