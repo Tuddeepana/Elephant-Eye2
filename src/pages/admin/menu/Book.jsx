@@ -12,6 +12,7 @@ const BookingTable = () => {
         roomNumber: '',
         bookedOn: '',
         bookingPrize: '',
+        remarks: '',
     });
     const [errors, setErrors] = useState({});
 
@@ -48,6 +49,7 @@ const BookingTable = () => {
         if (!formData.bookedOn) newErrors.bookedOn = 'Booked On date is required';
         if (!formData.bookingPrize) newErrors.bookingPrize = 'Booking Prize is required';
         if (isNaN(parseFloat(formData.bookingPrize))) newErrors.bookingPrize = 'Booking Prize must be a number';
+        if (!formData.remarks) newErrors.remarks = 'Remarks are required';
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -58,18 +60,17 @@ const BookingTable = () => {
 
         const { error } = await supabase
             .from('bookings')
-            .insert([
-                {
-                    guest_name: formData.guestName,
-                    mobile_number: formData.mobileNumber,
-                    confirmation: formData.confirmation,
-                    check_in_date: formData.checkInDate,
-                    check_out_date: formData.checkOutDate,
-                    room_number: formData.roomNumber,
-                    booked_on: formData.bookedOn,
-                    booking_prize: parseFloat(formData.bookingPrize),
-                },
-            ]);
+            .insert([{
+                guest_name: formData.guestName,
+                mobile_number: formData.mobileNumber,
+                confirmation: formData.confirmation,
+                check_in_date: formData.checkInDate,
+                check_out_date: formData.checkOutDate,
+                room_number: formData.roomNumber,
+                booked_on: formData.bookedOn,
+                booking_prize: parseFloat(formData.bookingPrize),
+                remarks: formData.remarks,
+            }]);
 
         if (error) {
             console.error('Error inserting data: ', error);
@@ -84,16 +85,8 @@ const BookingTable = () => {
                 roomNumber: '',
                 bookedOn: '',
                 bookingPrize: '',
+                remarks: '',
             });
-        }
-    };
-
-    const handleDeleteRow = async (id) => {
-        const { error } = await supabase.from('bookings').delete().eq('id', id);
-        if (error) {
-            console.error('Error deleting data: ', error);
-        } else {
-            fetchData();
         }
     };
 
@@ -126,7 +119,7 @@ const BookingTable = () => {
                             onChange={handleInputChange}
                             placeholder="Mobile Number"
                             className="p-2 border border-gray-300 rounded"
-                            pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                            pattern="[0-9]{10}"
                             maxLength="10"
                         />
                         {errors.mobileNumber && <p className="text-red-500 text-sm">{errors.mobileNumber}</p>}
@@ -212,7 +205,27 @@ const BookingTable = () => {
                         {errors.bookingPrize && <p className="text-red-500 text-sm">{errors.bookingPrize}</p>}
                     </div>
                 </div>
-                <button type="submit" className="p-2 bg-blue-500 text-white rounded mt-4">Add Booking</button>
+                <div>
+                    <label htmlFor="remarks" className="block mb-1">Remarks</label>
+                    <textarea
+                        id="remarks"
+                        name="remarks"
+                        value={formData.remarks}
+                        onChange={handleInputChange}
+                        placeholder="Remarks"
+                        className="p-2 border border-gray-300 rounded w-full"
+                        rows="2"
+                    />
+                    {errors.remarks && <p className="text-red-500 text-sm">{errors.remarks}</p>}
+                </div>
+                <button
+                    type="submit"
+                    className="p-2 text-white rounded mt-4"
+                    style={{backgroundColor: '#0e6a11'}}
+                >
+                    Add Booking
+                </button>
+
             </form>
 
             <table className="table-auto w-full border-collapse border border-gray-300">
@@ -226,7 +239,7 @@ const BookingTable = () => {
                     <th className="border border-gray-300 p-2">Room Number</th>
                     <th className="border border-gray-300 p-2">Booked On</th>
                     <th className="border border-gray-300 p-2">Booking Prize</th>
-                    <th className="border border-gray-300 p-2">Actions</th>
+                    <th className="border border-gray-300 p-2">Remarks</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -240,11 +253,7 @@ const BookingTable = () => {
                         <td className="border border-gray-300 p-2">{row.room_number}</td>
                         <td className="border border-gray-300 p-2">{row.booked_on}</td>
                         <td className="border border-gray-300 p-2">{row.booking_prize}</td>
-                        <td className="border border-gray-300 p-2">
-                            <button onClick={() => handleDeleteRow(row.id)}
-                                    className="bg-red-500 text-white p-1 rounded">Delete
-                            </button>
-                        </td>
+                        <td className="border border-gray-300 p-2">{row.remarks}</td>
                     </tr>
                 ))}
                 </tbody>
