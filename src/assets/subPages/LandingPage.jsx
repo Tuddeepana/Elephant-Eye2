@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import room from "../img/Lndpg_Imgs/h1.jpg";
-import beach from "../img/Lndpg_Imgs/h2.jpg";
+import room from "../img/Lndpg_Imgs/Hero Section 1.jpg";
+import beach from "../img/Lndpg_Imgs/Hero section 2.jpg";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
