@@ -7,6 +7,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Box, Typography, Button } from "@mui/material";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
+import Visiting from "../../assets/pdf/Visiting card.pdf";
 
 function AboutUs() {
     return (
@@ -46,9 +47,9 @@ function AboutUs() {
                         variant="contained"
                         color="primary"
                         startIcon={<ContactPhoneIcon />}
-                        href="/path-to-your-visiting-card.pdf"
+                        href={Visiting}
                         download
-                        sx={{ mt: 2 }}
+                        sx={{ mt: 2, backgroundColor: '#0e6a11', '&:hover': { backgroundColor: '#0c5a0e' } }}
                     >
                         Download Our Visiting Card
                     </Button>
@@ -62,17 +63,17 @@ function AboutUs() {
                     <Typography variant="body1" align="center" sx={{ mt: 1, color: "gray" }}>
                         For more information, please contact Dinindu.
                     </Typography>
-                    <div className="flex space-x-4 mt-4">
-                        <a href="https://www.facebook.com/elephanteyehotel" target="_blank" rel="noopener noreferrer">
-                            <FacebookIcon style={{ fontSize: 40, color: "#3b5998" }} />
-                        </a>
-                        <a href="https://www.instagram.com/elephanteyehotel" target="_blank" rel="noopener noreferrer">
-                            <InstagramIcon style={{ fontSize: 40, color: "#E1306C" }} />
-                        </a>
-                        <a href="https://www.google.com/search?q=elephant+eye+hotel+yala" target="_blank" rel="noopener noreferrer">
-                            <GoogleIcon style={{ fontSize: 40, color: "#DB4437" }} />
-                        </a>
-                    </div>
+                    {/*<div className="flex space-x-4 mt-4">*/}
+                    {/*    <a href="https://www.facebook.com/elephanteyehotel" target="_blank" rel="noopener noreferrer">*/}
+                    {/*        <FacebookIcon style={{ fontSize: 40, color: "#3b5998" }} />*/}
+                    {/*    </a>*/}
+                    {/*    <a href="https://www.instagram.com/elephanteyehotel" target="_blank" rel="noopener noreferrer">*/}
+                    {/*        <InstagramIcon style={{ fontSize: 40, color: "#E1306C" }} />*/}
+                    {/*    </a>*/}
+                    {/*    <a href="https://www.google.com/search?q=elephant+eye+hotel+yala" target="_blank" rel="noopener noreferrer">*/}
+                    {/*        <GoogleIcon style={{ fontSize: 40, color: "#DB4437" }} />*/}
+                    {/*    </a>*/}
+                    {/*</div>*/}
                 </Box>
             </div>
 

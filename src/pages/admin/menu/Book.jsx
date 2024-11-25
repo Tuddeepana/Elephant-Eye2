@@ -103,6 +103,8 @@ const BookingTable = () => {
         }
     };
 
+    const totalPrize = rows.reduce((total, row) => total + parseFloat(row.booking_prize), 0);
+
     return (
         <div className="container mx-auto p-6 bg-gray-50 min-h-screen">
             <h1 className="text-3xl font-bold text-center mb-8 text-green-800">Booking Table</h1>
@@ -177,40 +179,45 @@ const BookingTable = () => {
             <div className="overflow-auto bg-white shadow-md rounded">
                 <table className="w-full text-sm border-collapse border border-gray-300">
                     <thead className="bg-gray-100">
-                        <tr>
-                            {["Guest Name", "Mobile Number", "Confirmation", "Check-in", "Check-out", "Room", "Booked On", "Prize", "Remarks", "Actions"].map((header) => (
-                                <th key={header} className="border border-gray-300 p-2 text-left">{header}</th>
-                            ))}
-                        </tr>
+                    <tr>
+                        {["Guest Name", "Mobile Number", "Confirmation", "Check-in", "Check-out", "Room", "Booked On", "Prize $", "Remarks", "Actions"].map((header) => (
+                            <th key={header} className="border border-gray-300 p-2 text-left">{header}</th>
+                        ))}
+                    </tr>
                     </thead>
                     <tbody>
-                        {rows.length > 0 ? (
-                            rows.map((row) => (
-                                <tr key={row.id} className="hover:bg-gray-50">
-                                    <td className="border border-gray-300 p-2">{row.guest_name}</td>
-                                    <td className="border border-gray-300 p-2">{row.mobile_number}</td>
-                                    <td className="border border-gray-300 p-2">{row.confirmation}</td>
-                                    <td className="border border-gray-300 p-2">{row.check_in_date}</td>
-                                    <td className="border border-gray-300 p-2">{row.check_out_date}</td>
-                                    <td className="border border-gray-300 p-2">{row.room_number}</td>
-                                    <td className="border border-gray-300 p-2">{row.booked_on}</td>
-                                    <td className="border border-gray-300 p-2">{row.booking_prize}</td>
-                                    <td className="border border-gray-300 p-2">{row.remarks}</td>
-                                    <td className="border border-gray-300 p-2">
-                                        <button
-                                            onClick={() => handleDelete(row.id)}
-                                            className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="10" className="text-center p-4">No data available</td>
+                    {rows.length > 0 ? (
+                        rows.map((row) => (
+                            <tr key={row.id} className="hover:bg-gray-50">
+                                <td className="border border-gray-300 p-2">{row.guest_name}</td>
+                                <td className="border border-gray-300 p-2">{row.mobile_number}</td>
+                                <td className="border border-gray-300 p-2">{row.confirmation}</td>
+                                <td className="border border-gray-300 p-2">{row.check_in_date}</td>
+                                <td className="border border-gray-300 p-2">{row.check_out_date}</td>
+                                <td className="border border-gray-300 p-2">{row.room_number}</td>
+                                <td className="border border-gray-300 p-2">{row.booked_on}</td>
+                                <td className="border border-gray-300 p-2">{row.booking_prize}</td>
+                                <td className="border border-gray-300 p-2">{row.remarks}</td>
+                                <td className="border border-gray-300 p-2">
+                                    <button
+                                        onClick={() => handleDelete(row.id)}
+                                        className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
                             </tr>
-                        )}
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="10" className="text-center p-4">No data available</td>
+                        </tr>
+                    )}
+                    <tr className="bg-gray-100">
+                        <td colSpan="7" className="border border-gray-300 p-2 text-right font-bold">Total Prize $:</td>
+                        <td className="border border-gray-300 p-2 font-bold">{totalPrize.toFixed(2)}</td>
+                        <td colSpan="2" className="border border-gray-300 p-2"></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
