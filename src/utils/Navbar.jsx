@@ -26,7 +26,7 @@ const Navbar = () => {
     }, []);
 
     const getLinkClass = (path) => {
-        return window.location.pathname === path ? "text-yellow-500" : "hover:text-[#0e6a11]";
+        return window.location.pathname === path ? "text-[#0e6a11]" : "hover:text-[#0e6a11]";
     };
 
     const handleModalOpen = () => {
