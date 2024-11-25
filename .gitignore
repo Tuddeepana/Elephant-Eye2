@@ -32,8 +32,7 @@ yarn-error.log*
 # Windows files
 Thumbs.db
 
-# npm package lock
-package-lock.json
+
 
 # yarn lock (use only one package manager)
 yarn.lock
