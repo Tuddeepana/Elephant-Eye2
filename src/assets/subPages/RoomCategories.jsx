@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Deluxe_Twin from "../img/gallery/rooms/Twin.jpg";
 import Triple_room from "../img/gallery/rooms/Triple.jpg";
 import Deluxe_family from "../img/gallery/rooms/family.jpg";
-import Double_room from "../img/gallery/rooms/family.jpg"; // New added image
+import Double_room from "../img/gallery/rooms/double.jpg"; // New added image
 
 const ImageSwitcher = () => {
     const images = {

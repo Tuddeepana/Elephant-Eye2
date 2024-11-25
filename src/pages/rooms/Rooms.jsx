@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import Img1 from "../../assets/img/gallery/rooms/family.jpg";
 import Img2 from "../../assets/img/gallery/rooms/triple1.jpg";
-import Img3 from "../../assets/img/gallery/rooms/Twin.jpg"; // New image import
+import Img3 from "../../assets/img/gallery/rooms/double.jpg"; // New image import
 import Img4 from "../../assets/img/gallery/rooms/Twin.jpg";
 
 import LandingPage from "../../assets/subPages/LandingPage.jsx";
