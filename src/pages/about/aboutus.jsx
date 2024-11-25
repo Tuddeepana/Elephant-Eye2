@@ -7,6 +7,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Box, Typography, Button } from "@mui/material";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
+import Visiting from "../../assets/pdf/Visiting card.pdf";
 
 function AboutUs() {
     return (
@@ -46,9 +47,9 @@ function AboutUs() {
                         variant="contained"
                         color="primary"
                         startIcon={<ContactPhoneIcon />}
-                        href="/path-to-your-visiting-card.pdf"
+                        href={Visiting}
                         download
-                        sx={{ mt: 2 }}
+                        sx={{ mt: 2, backgroundColor: '#0e6a11', '&:hover': { backgroundColor: '#0c5a0e' } }}
                     >
                         Download Our Visiting Card
                     </Button>
