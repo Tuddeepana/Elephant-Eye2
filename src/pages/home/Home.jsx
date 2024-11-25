@@ -96,55 +96,55 @@ const Home = () => {
         {
             imageUrl: Ridiyagama,
             title: "Yala National Park",
-            location: "1 hour from Nuwara Eliya",
+            location: "Elephant eye to Yala - 34Min",
             description: "A beautiful place to visit"
         },
         {
             imageUrl: Kirind,
-            title: "Temple Kirinda Beach",
+            title: " Kirinda Temple & Beach",
             location: "2 hours from Kandy",
-            description: "A serene mountain retreat"
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Kataragama,
             title: "Kataragama",
-            location: "In the heart of Colombo",
-            description: "Experience the vibrant city life"
+            location: "Elephant eye to kataragama - 28Min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Thissamaharama,
-            title: "Thissamaharama Temple",
-            location: "3 hours from Galle",
-            description: "Explore the lush forests"
+            title: "Tissamaharama Temple",
+            location: "Elephant eye to Tissamaharama - 7min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Bundala,
-            title: "Bunadala Paradise",
-            location: "4 hours from Jaffna",
-            description: "Discover the desert beauty"
+            title: "Bunadala Birds Paradise",
+            location: "Elephant eye to Bundala - 23 min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Ridi,
             title: "Ridiyagama",
-            location: "5 hours from Trincomalee",
-            description: "Relax on a secluded island"
+            location: "Elephant eye to Ridiyagama - 50 min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Nine,
             title: "Ella",
-            location: "6 hours from Trincomalee",
-            description: "Enjoy the serene environment"
+            location: "Elephant eye to Ella - 1hr 49 min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Dry,
             title: "Mirijjawila Botanical Garden",
-            location: "2.5 hours from Kandy",
-            description: "A historic temple with stunning views"
+            location: "Elephant eye to Mirijjawila - 37 min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Kururlu,
-            title: "Kurulu Uyana",
-            location: "3.5 hours from Colombo",
+            title: "Birds Park Hambantota",
+            location: "Elephant eye to Kurulu Uyana - 50 min",
             description: "A bird sanctuary with diverse species"
         },
     ];
