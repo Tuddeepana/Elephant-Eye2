@@ -34,7 +34,7 @@ const Slideshow = () => {
     event.preventDefault();
     const validationErrors = {};
 
-    if (!checkInDate ) {
+    if (!checkInDate) {
       validationErrors.checkInDate = "Check-in date must be today or a future date.";
     }
 
@@ -55,21 +55,40 @@ const Slideshow = () => {
   };
 
   return (
-      <div>
-        <Navbar />
-        <div className="relative h-screen w-screen overflow-hidden">
-          {images.map((image, index) => (
-              <img
-                  key={index}
-                  src={image}
-                  alt={`Slide ${index}`}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                      index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-              />
-          ))}
+    <div className="flex flex-col h-screen w-screen overflow-hidden">
+      <Navbar />
+      <div className="relative flex-grow w-screen h-screen">
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`Slide ${index}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              index === currentIndex ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
-          {/* Overlay for White Box */}
+export default Slideshow;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* Overlay for White Box */}
           {/*<div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8 bg-white bg-opacity-70 px-4 py-6 rounded-lg shadow-lg w-full max-w-xl sm:px-10 sm:py-6 md:max-w-2xl lg:max-w-4xl">*/}
           {/*  <form className="space-y-4" onSubmit={handleSubmit}>*/}
           {/*    <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-4 lg:space-x-8">*/}
@@ -137,9 +156,3 @@ const Slideshow = () => {
           {/*    </div>*/}
           {/*  </form>*/}
           {/*</div>*/}
-        </div>
-      </div>
-  );
-};
-
-export default Slideshow;
