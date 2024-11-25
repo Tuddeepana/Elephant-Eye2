@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import supabase from '../../../service/supabaseClient.js';
+import supabase from '../../../service/supabaseClient';
 
 const BookingTable = () => {
     const [rows, setRows] = useState([]);
@@ -90,174 +90,130 @@ const BookingTable = () => {
         }
     };
 
-    return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Booking Table</h1>
+    const handleDelete = async (id) => {
+        const { error } = await supabase
+            .from('bookings')
+            .delete()
+            .eq('id', id);
 
-            <form onSubmit={handleSubmit} className="mb-4">
-                <div className="grid grid-cols-4 gap-2 mb-2">
-                    <div>
-                        <label htmlFor="guestName" className="block mb-1">Guest Name</label>
-                        <input
-                            type="text"
-                            id="guestName"
-                            name="guestName"
-                            value={formData.guestName}
-                            onChange={handleInputChange}
-                            placeholder="Guest Name"
-                            className="p-2 border border-gray-300 rounded"
-                        />
-                        {errors.guestName && <p className="text-red-500 text-sm">{errors.guestName}</p>}
-                    </div>
-                    <div>
-                        <label htmlFor="mobileNumber" className="block mb-1">Mobile Number</label>
-                        <input
-                            type="tel"
-                            id="mobileNumber"
-                            name="mobileNumber"
-                            value={formData.mobileNumber}
-                            onChange={handleInputChange}
-                            placeholder="Mobile Number"
-                            className="p-2 border border-gray-300 rounded"
-                            pattern="[0-9]{10}"
-                            maxLength="10"
-                        />
-                        {errors.mobileNumber && <p className="text-red-500 text-sm">{errors.mobileNumber}</p>}
-                    </div>
-                    <div>
-                        <label htmlFor="confirmation" className="block mb-1">Confirmation Status</label>
-                        <select
-                            id="confirmation"
-                            name="confirmation"
-                            value={formData.confirmation}
-                            onChange={handleInputChange}
-                            className="p-2 border border-gray-300 rounded"
-                        >
-                            <option value="">Confirmation Status</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        {errors.confirmation && <p className="text-red-500 text-sm">{errors.confirmation}</p>}
-                    </div>
-                    <div>
-                        <label htmlFor="checkInDate" className="block mb-1">Check-in Date</label>
-                        <input
-                            type="date"
-                            id="checkInDate"
-                            name="checkInDate"
-                            value={formData.checkInDate}
-                            onChange={handleInputChange}
-                            className="p-2 border border-gray-300 rounded"
-                        />
-                        {errors.checkInDate && <p className="text-red-500 text-sm">{errors.checkInDate}</p>}
-                    </div>
-                </div>
-                <div className="grid grid-cols-4 gap-2 mb-2">
-                    <div>
-                        <label htmlFor="checkOutDate" className="block mb-1">Check-out Date</label>
-                        <input
-                            type="date"
-                            id="checkOutDate"
-                            name="checkOutDate"
-                            value={formData.checkOutDate}
-                            onChange={handleInputChange}
-                            className="p-2 border border-gray-300 rounded"
-                        />
-                        {errors.checkOutDate && <p className="text-red-500 text-sm">{errors.checkOutDate}</p>}
-                    </div>
-                    <div>
-                        <label htmlFor="roomNumber" className="block mb-1">Room Number</label>
-                        <input
-                            type="text"
-                            id="roomNumber"
-                            name="roomNumber"
-                            value={formData.roomNumber}
-                            onChange={handleInputChange}
-                            placeholder="Room Number"
-                            className="p-2 border border-gray-300 rounded"
-                        />
-                        {errors.roomNumber && <p className="text-red-500 text-sm">{errors.roomNumber}</p>}
-                    </div>
-                    <div>
-                        <label htmlFor="bookedOn" className="block mb-1">Booked On</label>
-                        <input
-                            type="date"
-                            id="bookedOn"
-                            name="bookedOn"
-                            value={formData.bookedOn}
-                            onChange={handleInputChange}
-                            className="p-2 border border-gray-300 rounded"
-                        />
-                        {errors.bookedOn && <p className="text-red-500 text-sm">{errors.bookedOn}</p>}
-                    </div>
-                    <div>
-                        <label htmlFor="bookingPrize" className="block mb-1">Booking Prize</label>
-                        <input
-                            type="number"
-                            id="bookingPrize"
-                            name="bookingPrize"
-                            value={formData.bookingPrize}
-                            onChange={handleInputChange}
-                            placeholder="Booking Prize"
-                            className="p-2 border border-gray-300 rounded"
-                            step="0.01"
-                        />
-                        {errors.bookingPrize && <p className="text-red-500 text-sm">{errors.bookingPrize}</p>}
-                    </div>
+        if (error) {
+            console.error('Error deleting data: ', error);
+        } else {
+            setRows((prevRows) => prevRows.filter((row) => row.id !== id));
+        }
+    };
+
+    return (
+        <div className="container mx-auto p-6 bg-gray-50 min-h-screen">
+            <h1 className="text-3xl font-bold text-center mb-8 text-green-800">Booking Table</h1>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="mb-8 bg-white shadow-md rounded p-6">
+                <div className="grid grid-cols-4 gap-4">
+                    {[
+                        { id: "guestName", label: "Guest Name", type: "text" },
+                        { id: "mobileNumber", label: "Mobile Number", type: "tel", pattern: "[0-9]{10}", maxLength: "10" },
+                        { id: "confirmation", label: "Confirmation Status", type: "select", options: ["Yes", "No"] },
+                        { id: "checkInDate", label: "Check-in Date", type: "date" },
+                        { id: "checkOutDate", label: "Check-out Date", type: "date" },
+                        { id: "roomNumber", label: "Room Number", type: "text" },
+                        { id: "bookedOn", label: "Booked On", type: "date" },
+                        { id: "bookingPrize", label: "Booking Prize", type: "number", step: "0.01" },
+                    ].map((field) => (
+                        <div key={field.id}>
+                            <label htmlFor={field.id} className="block mb-1 font-medium">{field.label}</label>
+                            {field.type === "select" ? (
+                                <select
+                                    id={field.id}
+                                    name={field.id}
+                                    value={formData[field.id]}
+                                    onChange={handleInputChange}
+                                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500"
+                                >
+                                    <option value="">Select</option>
+                                    {field.options.map((option) => (
+                                        <option key={option} value={option}>{option}</option>
+                                    ))}
+                                </select>
+                            ) : (
+                                <input
+                                    type={field.type}
+                                    id={field.id}
+                                    name={field.id}
+                                    value={formData[field.id]}
+                                    onChange={handleInputChange}
+                                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500"
+                                    {...(field.pattern && { pattern: field.pattern })}
+                                    {...(field.maxLength && { maxLength: field.maxLength })}
+                                    {...(field.step && { step: field.step })}
+                                />
+                            )}
+                            {errors[field.id] && <p className="text-red-500 text-sm">{errors[field.id]}</p>}
+                        </div>
+                    ))}
                 </div>
                 <div>
-                    <label htmlFor="remarks" className="block mb-1">Remarks</label>
+                    <label htmlFor="remarks" className="block mb-1 font-medium">Remarks</label>
                     <textarea
                         id="remarks"
                         name="remarks"
                         value={formData.remarks}
                         onChange={handleInputChange}
                         placeholder="Remarks"
-                        className="p-2 border border-gray-300 rounded w-full"
-                        rows="2"
+                        className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500"
+                        rows="3"
                     />
                     {errors.remarks && <p className="text-red-500 text-sm">{errors.remarks}</p>}
                 </div>
                 <button
                     type="submit"
-                    className="p-2 text-white rounded mt-4"
-                    style={{backgroundColor: '#0e6a11'}}
+                    className="mt-4 w-full bg-green-600 text-white font-medium p-2 rounded hover:bg-green-700"
                 >
                     Add Booking
                 </button>
-
             </form>
 
-            <table className="table-auto w-full border-collapse border border-gray-300">
-                <thead>
-                <tr className="bg-gray-200">
-                    <th className="border border-gray-300 p-2">Guest Name</th>
-                    <th className="border border-gray-300 p-2">Mobile Number</th>
-                    <th className="border border-gray-300 p-2">Confirmation</th>
-                    <th className="border border-gray-300 p-2">Check-in Date</th>
-                    <th className="border border-gray-300 p-2">Check-out Date</th>
-                    <th className="border border-gray-300 p-2">Room Number</th>
-                    <th className="border border-gray-300 p-2">Booked On</th>
-                    <th className="border border-gray-300 p-2">Booking Prize</th>
-                    <th className="border border-gray-300 p-2">Remarks</th>
-                </tr>
-                </thead>
-                <tbody>
-                {rows.map((row) => (
-                    <tr key={row.id}>
-                        <td className="border border-gray-300 p-2">{row.guest_name}</td>
-                        <td className="border border-gray-300 p-2">{row.mobile_number}</td>
-                        <td className="border border-gray-300 p-2">{row.confirmation}</td>
-                        <td className="border border-gray-300 p-2">{row.check_in_date}</td>
-                        <td className="border border-gray-300 p-2">{row.check_out_date}</td>
-                        <td className="border border-gray-300 p-2">{row.room_number}</td>
-                        <td className="border border-gray-300 p-2">{row.booked_on}</td>
-                        <td className="border border-gray-300 p-2">{row.booking_prize}</td>
-                        <td className="border border-gray-300 p-2">{row.remarks}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+            {/* Table */}
+            <div className="overflow-auto bg-white shadow-md rounded">
+                <table className="w-full text-sm border-collapse border border-gray-300">
+                    <thead className="bg-gray-100">
+                        <tr>
+                            {["Guest Name", "Mobile Number", "Confirmation", "Check-in", "Check-out", "Room", "Booked On", "Prize", "Remarks", "Actions"].map((header) => (
+                                <th key={header} className="border border-gray-300 p-2 text-left">{header}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rows.length > 0 ? (
+                            rows.map((row) => (
+                                <tr key={row.id} className="hover:bg-gray-50">
+                                    <td className="border border-gray-300 p-2">{row.guest_name}</td>
+                                    <td className="border border-gray-300 p-2">{row.mobile_number}</td>
+                                    <td className="border border-gray-300 p-2">{row.confirmation}</td>
+                                    <td className="border border-gray-300 p-2">{row.check_in_date}</td>
+                                    <td className="border border-gray-300 p-2">{row.check_out_date}</td>
+                                    <td className="border border-gray-300 p-2">{row.room_number}</td>
+                                    <td className="border border-gray-300 p-2">{row.booked_on}</td>
+                                    <td className="border border-gray-300 p-2">{row.booking_prize}</td>
+                                    <td className="border border-gray-300 p-2">{row.remarks}</td>
+                                    <td className="border border-gray-300 p-2">
+                                        <button
+                                            onClick={() => handleDelete(row.id)}
+                                            className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="10" className="text-center p-4">No data available</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
