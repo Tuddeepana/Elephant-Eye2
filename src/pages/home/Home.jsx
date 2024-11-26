@@ -9,24 +9,23 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
-
 import Reviews from "../../assets/subPages/Reviews.jsx";
-import Chinees from "../../assets/img/cardImages/chinese.jpg"
-import Srilanka from '../../assets/img/cardImages/srilanka.jpg'
-import Western from '../../assets/img/cardImages/western.jpg'
-import Kirind from '../../assets/img/cardImages/kirirnda.jpg'
-import Nine from '../../assets/img/cardImages/nine.jpg'
+import Chinees from "../../assets/img/cardImages/chinese.jpg";
+import Srilanka from '../../assets/img/cardImages/srilanka.jpg';
+import Western from '../../assets/img/cardImages/western.jpg';
+import Kirind from '../../assets/img/cardImages/kirirnda.jpg';
+import Nine from '../../assets/img/cardImages/nine.jpg';
 
-import Kataragama from '../../assets/img/cardImages/kataragama.jpg'
-import Thissamaharama from '../../assets/img/cardImages/thissamahara.jpg'
-import Bundala from '../../assets/img/cardImages/Bundala.jpg'
-import Ridiyagama from '../../assets/img/cardImages/ridiyagama.jpg'
-import Kururlu from '../../assets/img/cardImages/kururlu.jpg'
-import Dry from '../../assets/img/cardImages/Dry.jpg'
-import Ridi from '../../assets/img/cardImages/ridi.jpg'
-import Offer from '../../assets/img/common/Offer.jpg'
+import Kataragama from '../../assets/img/cardImages/kataragama.jpg';
+import Thissamaharama from '../../assets/img/cardImages/thissamahara.jpg';
+import Bundala from '../../assets/img/cardImages/Bundala.jpg';
+import Ridiyagama from '../../assets/img/cardImages/ridiyagama.jpg';
+import Kururlu from '../../assets/img/cardImages/kururlu.jpg';
+import Dry from '../../assets/img/cardImages/Dry.jpg';
+import Ridi from '../../assets/img/cardImages/ridi.jpg';
+import Offer from '../../assets/img/common/Offer.jpg';
 
-import '../../style/main.css'
+import '../../style/main.css';
 import RoomCategories from "../../assets/subPages/RoomCategories.jsx";
 
 const Popup = ({ imageUrl, onClose, isMinimized, onMinimize, isVisible }) => (
@@ -172,6 +171,9 @@ const Home = () => {
 
     return (
         <>
+            <div className="overflow-hidden">
+                <LandingPage />
+            </div>
             {isPopupVisible && (
                 <Popup
                     imageUrl={Offer}
@@ -181,7 +183,7 @@ const Home = () => {
                     isVisible={isMinimizedVisible}
                 />
             )}
-            <LandingPage />
+
             <div className={isPopupVisible && !isMinimized ? "blur-background" : ""}>
                 <div className="overflow-hidden">
                     <div className="flex flex-col items-center justify-center px-4">
