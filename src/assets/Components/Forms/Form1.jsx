@@ -12,10 +12,6 @@ const ReservationForm = () => {
         nationality: 'Sri Lanka',
         countryCode: '',
         mobileNumber: '',
-        roomCategory: '',
-        mealPlan: '',
-        adults: '',
-        children: '',
         checkinDate: '',
         checkoutDate: '',
         remarks: '' // Add remarks field
@@ -51,13 +47,13 @@ const ReservationForm = () => {
         const reservationDetails = JSON.parse(localStorage.getItem('reservationDetails'));
         let selectedRoomsDetails = '';
         reservationDetails.selectedRooms.forEach((room, index) => {
-            selectedRoomsDetails += `Type: ${room.type}%0ASelected Type: ${room.selectedType}%0ASelected Persons: ${room.selectedPersons}%0A`;
+            selectedRoomsDetails += `Room Category: ${room.type}%0ASelected Type: ${room.selectedType}%0ASelected Persons: ${room.selectedPersons}%0A`;
             if (index < reservationDetails.selectedRooms.length - 1) {
                 selectedRoomsDetails += '%0A'; // Add a new line between room details
             }
         });
 
-        const message = `Name: ${formData.name}%0AAddress: ${formData.address}%0ANIC: ${formData.nic}%0APassport Number: ${formData.passportNumber}%0ANationality: ${formData.nationality}%0ACountry Code: ${formData.countryCode}%0AMobile Number: ${formData.mobileNumber}%0ARoom Category: ${formData.roomCategory}%0AMeal Plan: ${formData.mealPlan}%0AAdults: ${formData.adults}%0AChildren: ${formData.children}%0ACheck-in Date: ${formData.checkinDate}%0ACheck-out Date: ${formData.checkoutDate}%0ARemarks: ${formData.remarks}%0ASelected Rooms:%0A${selectedRoomsDetails}`;
+        const message = `Name: ${formData.name}%0AAddress: ${formData.address}%0ANIC: ${formData.nic}%0APassport Number: ${formData.passportNumber}%0ANationality: ${formData.nationality}%0ACountry Code: ${formData.countryCode}%0AMobile Number: ${formData.mobileNumber}%0ACheck-in Date: ${formData.checkinDate}%0ACheck-out Date: ${formData.checkoutDate}%0ARemarks: ${formData.remarks}%0ASelected :%0A${selectedRoomsDetails}`;
         const whatsappUrl = `https://wa.me/94716520690?text=${message}`;
         window.location.href = whatsappUrl;
     };

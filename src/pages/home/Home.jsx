@@ -9,24 +9,23 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
-
 import Reviews from "../../assets/subPages/Reviews.jsx";
-import Chinees from "../../assets/img/cardImages/chinese.jpg"
-import Srilanka from '../../assets/img/cardImages/srilanka.jpg'
-import Western from '../../assets/img/cardImages/western.jpg'
-import Kirind from '../../assets/img/cardImages/kirirnda.jpg'
-import Nine from '../../assets/img/cardImages/nine.jpg'
+import Chinees from "../../assets/img/cardImages/chinese.jpg";
+import Srilanka from '../../assets/img/cardImages/srilanka.jpg';
+import Western from '../../assets/img/cardImages/western.jpg';
+import Kirind from '../../assets/img/cardImages/kirirnda.jpg';
+import Nine from '../../assets/img/cardImages/nine.jpg';
 
-import Kataragama from '../../assets/img/cardImages/kataragama.jpg'
-import Thissamaharama from '../../assets/img/cardImages/thissamahara.jpg'
-import Bundala from '../../assets/img/cardImages/Bundala.jpg'
-import Ridiyagama from '../../assets/img/cardImages/ridiyagama.jpg'
-import Kururlu from '../../assets/img/cardImages/kururlu.jpg'
-import Dry from '../../assets/img/cardImages/Dry.jpg'
-import Ridi from '../../assets/img/cardImages/ridi.jpg'
-import Offer from '../../assets/img/common/Offer.jpg'
+import Kataragama from '../../assets/img/cardImages/kataragama.jpg';
+import Thissamaharama from '../../assets/img/cardImages/thissamahara.jpg';
+import Bundala from '../../assets/img/cardImages/Bundala.jpg';
+import Ridiyagama from '../../assets/img/cardImages/ridiyagama.jpg';
+import Kururlu from '../../assets/img/cardImages/kururlu.jpg';
+import Dry from '../../assets/img/cardImages/Dry.jpg';
+import Ridi from '../../assets/img/cardImages/ridi.jpg';
+import Offer from '../../assets/img/common/Offer.jpg';
 
-import '../../style/main.css'
+import '../../style/main.css';
 import RoomCategories from "../../assets/subPages/RoomCategories.jsx";
 
 const Popup = ({ imageUrl, onClose, isMinimized, onMinimize, isVisible }) => (
@@ -96,55 +95,55 @@ const Home = () => {
         {
             imageUrl: Ridiyagama,
             title: "Yala National Park",
-            location: "1 hour from Nuwara Eliya",
+            location: "Elephant eye to Yala - 34Min",
             description: "A beautiful place to visit"
         },
         {
             imageUrl: Kirind,
-            title: "Temple Kirinda Beach",
+            title: " Kirinda Temple & Beach",
             location: "2 hours from Kandy",
-            description: "A serene mountain retreat"
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Kataragama,
             title: "Kataragama",
-            location: "In the heart of Colombo",
-            description: "Experience the vibrant city life"
+            location: "Elephant eye to kataragama - 28Min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Thissamaharama,
-            title: "Thissamaharama Temple",
-            location: "3 hours from Galle",
-            description: "Explore the lush forests"
+            title: "Tissamaharama Temple",
+            location: "Elephant eye to Tissamaharama - 7min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Bundala,
-            title: "Bunadala Paradise",
-            location: "4 hours from Jaffna",
-            description: "Discover the desert beauty"
+            title: "Bunadala Birds Paradise",
+            location: "Elephant eye to Bundala - 23 min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Ridi,
             title: "Ridiyagama",
-            location: "5 hours from Trincomalee",
-            description: "Relax on a secluded island"
+            location: "Elephant eye to Ridiyagama - 50 min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Nine,
             title: "Ella",
-            location: "6 hours from Trincomalee",
-            description: "Enjoy the serene environment"
+            location: "Elephant eye to Ella - 1hr 49 min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Dry,
             title: "Mirijjawila Botanical Garden",
-            location: "2.5 hours from Kandy",
-            description: "A historic temple with stunning views"
+            location: "Elephant eye to Mirijjawila - 37 min",
+            description: "A beautiful place to visit"
         },
         {
             imageUrl: Kururlu,
-            title: "Kurulu Uyana",
-            location: "3.5 hours from Colombo",
+            title: "Birds Park Hambantota",
+            location: "Elephant eye to Kurulu Uyana - 50 min",
             description: "A bird sanctuary with diverse species"
         },
     ];
@@ -172,6 +171,9 @@ const Home = () => {
 
     return (
         <>
+            <div className="overflow-hidden">
+                <LandingPage />
+            </div>
             {isPopupVisible && (
                 <Popup
                     imageUrl={Offer}
@@ -181,7 +183,7 @@ const Home = () => {
                     isVisible={isMinimizedVisible}
                 />
             )}
-            <LandingPage />
+
             <div className={isPopupVisible && !isMinimized ? "blur-background" : ""}>
                 <div className="overflow-hidden">
                     <div className="flex flex-col items-center justify-center px-4">
