@@ -8,7 +8,7 @@ const Footer = () => {
                 style={{ backgroundImage: `url(${FooterImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             >
                 <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-12">
                         <div>
                             <ul className="mt-8 space-y-4">
                                 <li>
@@ -113,10 +113,10 @@ const Footer = () => {
                     </div>
                     <div className="mt-20 md:mt-28 2xl:mt-32">
                         <div className="lg:flex lg:items-center lg:justify-between">
-                        <div className="sm:flex sm:items-center sm:justify-start sm:space-x-8">
+                            <div className="sm:flex sm:items-center sm:justify-start sm:space-x-8">
                                 {/* Social Media Icons */}
                             </div>
-                            <p className="mt-6 text-sm text-white font-semibold lg:mt-0">All copyrights reserved by Elephant Eye- © 2024 All Rights Reserved.</p>
+                            <p className="mt-6 text-sm text-white font-semibold lg:mt-0 text-center">All copyrights reserved by Elephant Eye- © 2024 All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>
