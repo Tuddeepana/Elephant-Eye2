@@ -59,18 +59,7 @@ const RoomTable = () => {
     setSelectedRooms(selectedRooms.filter((_, i) => i !== index));
   };
 
-  const validateDates = () => {
-    if (new Date(checkInDate) >= new Date(checkOutDate)) {
-      setError("Check-out date must be after check-in date.");
-      return false;
-    }
-    return true;
-  };
-
   const handleProceed = () => {
-    if (!validateDates()) {
-      return;
-    }
     const reservationDetails = {
       checkInDate,
       checkOutDate,
