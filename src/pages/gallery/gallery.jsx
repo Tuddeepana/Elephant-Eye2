@@ -9,39 +9,108 @@ import './gallery.css';
 
 //import the gallery images
 import img1 from '../../assets/img/gallery/1 (1).jpg';
-import img2 from '../../assets/img/gallery/1 (2).jpg'
+import img2 from '../../assets/img/gallery/1 (2).jpg';
+import Relaxation from '../../assets/img/gallery/Relaxation.jpg';
+import Bird_Eye_View from '../../assets/img/gallery/Bird Eye View.jpg';
+import Free_Cycling from '../../assets/img/gallery/Free Cycling.jpg';
+import Property_Building from '../../assets/img/gallery/Property Building.jpeg';
+import pool1 from '../../assets/img/gallery/pool1.jpeg';
+import pool2 from '../../assets/img/gallery/pool2.jpeg';
+import pool3 from '../../assets/img/gallery/pool3.jpeg';
+import pool4 from '../../assets/img/gallery/pool4.jpeg';
+import yala1 from '../../assets/img/gallery/yala1.JPG';
+import yala2 from '../../assets/img/gallery/yala2.JPG';
+import yala3 from '../../assets/img/gallery/yala3.JPG';
+import yala4 from '../../assets/img/gallery/yala4.jpeg';
+import Toiletries from '../../assets/img/gallery/Toiletries.jpeg';
+import Toothbrushes_for_family_room from '../../assets/img/gallery/Toothbrushes_for_family_room.jpeg';
+import Terrace_Balcony from '../../assets/img/gallery/Terrace___Balcony.jpeg';
+import coffee_Making from '../../assets/img/gallery/coffee_Making.jpg';
+
 
 const images = [
     {
-        url: img1,
-        title: 'Serene Mountain Retreat',
+        url: Relaxation,
+        title: 'Relaxation',
+        description: 'Experience the vibrant city life in the heart of Colombo.'
+    },
+    {
+        url: Bird_Eye_View,
+        title: 'Bird Eye View',
         description: 'A serene mountain retreat 2 hours from Kandy.'
     },
     {
-        url: img2,
-        title: 'Western Meals',
+        url: Free_Cycling,
+        title: 'Free Cycling',
+        description: 'Experience the vibrant city life in the heart of Colombo.'
+    },
+    
+    {
+        url: Property_Building,
+        title: 'Building',
+        description: 'Experience the vibrant city life in the heart of Colombo.'
+    },
+    
+    {
+        url: pool2,
+        title: 'Pool',
         description: 'Experience the vibrant city life in the heart of Colombo.'
     },
     {
-        url: image1,
-        title: 'Western Meals',
+        url: pool1,
+        title: 'Pool',
         description: 'Experience the vibrant city life in the heart of Colombo.'
     },
     {
-        url: image1,
-        title: 'Western Meals',
+        url: pool3,
+        title: 'Pool',
         description: 'Experience the vibrant city life in the heart of Colombo.'
     },
     {
-        url: image1,
-        title: 'Western Meals',
+        url: pool4,
+        title: 'Pool',
         description: 'Experience the vibrant city life in the heart of Colombo.'
     },
     {
-        url: image1,
-        title: 'Western Meals',
+        url: yala1,
+        title: 'Safari',
         description: 'Experience the vibrant city life in the heart of Colombo.'
     },
+    {
+        url: yala2,
+        title: 'Safari',
+        description: 'Experience the vibrant city life in the heart of Colombo.'
+    },
+    {
+        url: yala3,
+        title: 'Safari',
+        description: 'Experience the vibrant city life in the heart of Colombo.'
+    },
+    {
+        url: yala4,
+        title: 'Safari',
+        description: 'Experience the vibrant city life in the heart of Colombo.'
+    },
+    {
+        url: Toiletries,
+        title: 'Toiletries',
+        description: 'Experience the vibrant city life in the heart of Colombo.'
+    },
+    {
+        url: Terrace_Balcony,
+        title: 'Terrace alcony',
+        description: 'Experience the vibrant city life in the heart of Colombo.'
+    },
+    {
+        url: Toothbrushes_for_family_room,
+        title: 'Toothbrushes for family room',
+        description: 'Experience the vibrant city life in the heart of Colombo.'
+    },
+    {
+        url: coffee_Making,
+        title: 'coffee Making',
+        description: 'Experience the vibrant city life in the heart of Colombo.'
+    }
     // Add more images as needed
 ];
 
