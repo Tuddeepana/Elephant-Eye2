@@ -101,7 +101,7 @@ const Home = () => {
         {
             imageUrl: Kirind,
             title: " Kirinda Temple & Beach",
-            location: "2 hours from Kandy",
+            location: "Elephant eye to Kirinda - 23 min",
             description: "A beautiful place to visit"
         },
         {

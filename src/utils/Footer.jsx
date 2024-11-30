@@ -12,19 +12,19 @@ const Footer = () => {
                         <div>
                             <ul className="mt-8 space-y-4">
                                 <li>
-                                    <a href="#" title=""
+                                    <a href="/" title=""
                                        className="text-white font-semibold transition-all duration-200 hover:text-white focus:text-white"> Home </a>
                                 </li>
                                 <li>
-                                    <a href="#" title=""
+                                    <a href="/rooms" title=""
                                        className="text-white font-semibold transition-all duration-200 hover:text-white focus:text-white"> Rooms </a>
                                 </li>
                                 <li>
-                                    <a href="#" title=""
+                                    <a href="/gallery" title=""
                                        className="text-white font-semibold transition-all duration-200 hover:text-white focus:text-white"> Gallery </a>
                                 </li>
                                 <li>
-                                    <a href="#" title=""
+                                    <a href="/aboutus" title=""
                                        className="text-white font-semibold transition-all duration-200 hover:text-white focus:text-white"> About Us </a>
                                 </li>
                             </ul>
@@ -80,7 +80,7 @@ const Footer = () => {
                                        target="_blank" rel="noopener noreferrer"> TikTok </a>
                                 </li>
                                 <li>
-                                    <a href="#" title=""
+                                    <a href="https://youtube.com/@elephanteyehotel?si=NRdRuwINsqVq0yJS" title=""
                                        className="text-white font-semibold transition-all duration-200 hover:text-white focus:text-white"
                                        target="_blank" rel="noopener noreferrer"> YouTube </a>
                                 </li>
