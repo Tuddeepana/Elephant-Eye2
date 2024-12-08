@@ -54,7 +54,7 @@ const ReservationForm = () => {
         });
 
         const message = `Name: ${formData.name}%0AAddress: ${formData.address}%0ANIC: ${formData.nic}%0APassport Number: ${formData.passportNumber}%0ANationality: ${formData.nationality}%0ACountry Code: ${formData.countryCode}%0AMobile Number: ${formData.mobileNumber}%0ACheck-in Date: ${formData.checkinDate}%0ACheck-out Date: ${formData.checkoutDate}%0ARemarks: ${formData.remarks}%0ASelected :%0A${selectedRoomsDetails}`;
-        const whatsappUrl = `https://wa.me/94716520690?text=${message}`;
+        const whatsappUrl = `https://wa.me/94707676750?text=${message}`;
         window.location.href = whatsappUrl;
     };
 
