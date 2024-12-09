@@ -38,7 +38,7 @@ const Popup = ({ imageUrl, onClose, isMinimized, onMinimize, isVisible }) => (
 );
 
 const Home = () => {
-    const active = 1; // Added constant
+    const active = 0; // Added constant
 
     const [isPopupVisible, setIsPopupVisible] = useState(true);
     const [isMinimized, setIsMinimized] = useState(false);
